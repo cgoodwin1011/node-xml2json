@@ -10,13 +10,18 @@ It does not parse the following elements:
 * Entity declarations
 * Comments
 
-This module uses node-expat which will require extra steps if you want to get it installed on Windows. Please
-refer to its [documentation](https://github.com/astro/node-expat/blob/master/README.md#windows).
-
 ## Installation
 ```
 $ npm install xml2json
 ```
+### A Note on Windows Installation
+
+Installing this module on Windows machines often requires extra steps because this module uses node-expat (which in turn uses node-gyp).  In most cases (but not all!), installing windows build tools will fix the problem:
+```
+npm install --global --production windows-build-tools
+```
+See [below](##More-on-Windows-Installation) if this does not work.  
+
 
 ## Usage
 ```javascript
@@ -95,6 +100,15 @@ var options = {
 
 
 (*) xml2json tranforms CDATA content to JSON, but it doesn't generate a reversible structure.
+
+## More on Windows Installation
+
+If you cannot install this module after first running `npm install --global --production windows-build-tools`, try the following:
+``` 
+npm install --global --production windows-build-tools --vs2015
+```
+ If that does not work, see this [article](https://spin.atomicobject.com/2019/03/27/node-gyp-windows/) for additional solutions as well as node-expat [documentation](https://github.com/astro/node-expat/blob/master/README.md#windows) and node-gyp [documentation](https://www.npmjs.com/package/node-gyp#on-windows
+).
 
 ## License
 (The MIT License)
